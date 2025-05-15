@@ -95,7 +95,7 @@ export default function DictionaryPage() {
         {isLoading && (
           <div className="text-center py-8">
             <Loader2 className="h-8 w-8 animate-spin mx-auto text-purple-500" />
-            <p className="mt-2">Searching for "{searchTerm}"...</p>
+            <p className="mt-2">Searching for {searchTerm}...</p>
           </div>
         )}
 

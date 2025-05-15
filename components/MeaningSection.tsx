@@ -26,7 +26,7 @@ export function MeaningSection({ meaning, setSearchTerm, handleSearch }: Meaning
                                 <p>{def.definition}</p>
                                 {def.example && (
                                     <p className="mt-2 text-gray-600 dark:text-gray-400">
-                                        "{def.example}"
+                                        {def.example}
                                     </p>
                                 )}
                             </div>
