@@ -9,8 +9,14 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ searchTerm, setSearchTerm, isLoading, handleSubmit }: SearchBarProps) {
+    const handleFormSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchTerm.trim() === "") return;
+        handleSubmit(e);
+    };
+
     return (
-        <form onSubmit={handleSubmit} className="relative mb-12 bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <form onSubmit={handleFormSubmit} className="relative mb-12 bg-gray-100 dark:bg-gray-800 rounded-lg">
             <Input
                 type="text"
                 placeholder="Search for a word..."
@@ -22,12 +28,13 @@ export function SearchBar({ searchTerm, setSearchTerm, isLoading, handleSubmit }
             <button
                 type="submit"
                 className="absolute right-4 top-1/2 transform -translate-y-1/2"
-                disabled={isLoading}
+                disabled={isLoading || searchTerm.trim() === ""} // Deshabilitar si está vacío
+                aria-label="Search"
             >
                 {isLoading ? (
                     <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
                 ) : (
-                    <Search className="h-5 w-5 text-purple-500" />
+                    <Search className={`h-5 w-5 ${searchTerm.trim() === "" ? "text-gray-400" : "text-purple-500"}`} />
                 )}
             </button>
         </form>
